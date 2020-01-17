@@ -1,0 +1,30 @@
+.arguments
+   title:string
+   description:string
+   release_year:string
+   language_id:long
+   original_language_id:long
+   rental_duration:long
+   rental_rate:decimal
+   length:long
+   replacement_cost:decimal
+   rating:string
+   special_features:string
+   last_update:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/values
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.create
+   database:sakila
+   table:film
+   return-id:bool:true
+   values
+slots.return-nodes:x:@wait.slots.signal/*

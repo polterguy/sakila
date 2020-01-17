@@ -1,0 +1,27 @@
+.arguments
+   rental_id:long
+   rental_date:date
+   inventory_id:long
+   customer_id:long
+   return_date:date
+   staff_id:long
+   last_update:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/values
+   get-nodes:x:@.arguments/*
+unwrap:x:+/*/ids/*
+wait.slots.signal:magic.db.mysql.update
+   database:sakila
+   table:rental
+   values
+   ids
+      rental_id:x:@.arguments/*/rental_id
+slots.return-nodes:x:@wait.slots.signal/*

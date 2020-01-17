@@ -1,0 +1,71 @@
+.arguments
+   limit:long
+   offset:long
+   order:string
+   direction:string
+   rental_id.mt:long
+   rental_id.lt:long
+   rental_id.mteq:long
+   rental_id.lteq:long
+   rental_id.neq:long
+   rental_id.eq:long
+   rental_date.mt:date
+   rental_date.lt:date
+   rental_date.mteq:date
+   rental_date.lteq:date
+   rental_date.neq:date
+   rental_date.eq:date
+   inventory_id.mt:long
+   inventory_id.lt:long
+   inventory_id.mteq:long
+   inventory_id.lteq:long
+   inventory_id.neq:long
+   inventory_id.eq:long
+   customer_id.mt:long
+   customer_id.lt:long
+   customer_id.mteq:long
+   customer_id.lteq:long
+   customer_id.neq:long
+   customer_id.eq:long
+   return_date.mt:date
+   return_date.lt:date
+   return_date.mteq:date
+   return_date.lteq:date
+   return_date.neq:date
+   return_date.eq:date
+   staff_id.mt:long
+   staff_id.lt:long
+   staff_id.mteq:long
+   staff_id.lteq:long
+   staff_id.neq:long
+   staff_id.eq:long
+   last_update.mt:date
+   last_update.lt:date
+   last_update.mteq:date
+   last_update.lteq:date
+   last_update.neq:date
+   last_update.eq:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/args
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.read
+   database:sakila
+   table:rental
+   args
+   columns
+      rental_id
+      rental_date
+      inventory_id
+      customer_id
+      return_date
+      staff_id
+      last_update
+slots.return-nodes:x:@wait.slots.signal/*

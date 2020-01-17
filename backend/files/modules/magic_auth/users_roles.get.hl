@@ -1,0 +1,38 @@
+.arguments
+   limit:long
+   offset:long
+   order:string
+   direction:string
+   role.like:string
+   role.mt:string
+   role.lt:string
+   role.mteq:string
+   role.lteq:string
+   role.neq:string
+   role.eq:string
+   user.like:string
+   user.mt:string
+   user.lt:string
+   user.mteq:string
+   user.lteq:string
+   user.neq:string
+   user.eq:string
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/args
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.read
+   database:magic_auth
+   table:users_roles
+   args
+   columns
+      role
+      user
+slots.return-nodes:x:@wait.slots.signal/*

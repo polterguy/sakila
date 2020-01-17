@@ -1,0 +1,62 @@
+.arguments
+   payment_id.mt:long
+   payment_id.lt:long
+   payment_id.mteq:long
+   payment_id.lteq:long
+   payment_id.neq:long
+   payment_id.eq:long
+   customer_id.mt:long
+   customer_id.lt:long
+   customer_id.mteq:long
+   customer_id.lteq:long
+   customer_id.neq:long
+   customer_id.eq:long
+   staff_id.mt:long
+   staff_id.lt:long
+   staff_id.mteq:long
+   staff_id.lteq:long
+   staff_id.neq:long
+   staff_id.eq:long
+   rental_id.mt:long
+   rental_id.lt:long
+   rental_id.mteq:long
+   rental_id.lteq:long
+   rental_id.neq:long
+   rental_id.eq:long
+   amount.mt:decimal
+   amount.lt:decimal
+   amount.mteq:decimal
+   amount.lteq:decimal
+   amount.neq:decimal
+   amount.eq:decimal
+   payment_date.mt:date
+   payment_date.lt:date
+   payment_date.mteq:date
+   payment_date.lteq:date
+   payment_date.neq:date
+   payment_date.eq:date
+   last_update.mt:date
+   last_update.lt:date
+   last_update.mteq:date
+   last_update.lteq:date
+   last_update.neq:date
+   last_update.eq:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/args
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.read
+   database:sakila
+   table:payment
+   args
+      limit:long:1
+   columns
+      count(*) as count
+slots.return-nodes:x:@wait.slots.signal/*

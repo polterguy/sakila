@@ -1,0 +1,24 @@
+.arguments
+   film_id:long
+   category_id:long
+   last_update:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/values
+   get-nodes:x:@.arguments/*
+unwrap:x:+/*/ids/*
+wait.slots.signal:magic.db.mysql.update
+   database:sakila
+   table:film_category
+   values
+   ids
+      film_id:x:@.arguments/*/film_id
+      category_id:x:@.arguments/*/category_id
+slots.return-nodes:x:@wait.slots.signal/*

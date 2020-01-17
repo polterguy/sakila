@@ -1,0 +1,50 @@
+.arguments
+   limit:long
+   offset:long
+   order:string
+   direction:string
+   inventory_id.mt:long
+   inventory_id.lt:long
+   inventory_id.mteq:long
+   inventory_id.lteq:long
+   inventory_id.neq:long
+   inventory_id.eq:long
+   film_id.mt:long
+   film_id.lt:long
+   film_id.mteq:long
+   film_id.lteq:long
+   film_id.neq:long
+   film_id.eq:long
+   store_id.mt:long
+   store_id.lt:long
+   store_id.mteq:long
+   store_id.lteq:long
+   store_id.neq:long
+   store_id.eq:long
+   last_update.mt:date
+   last_update.lt:date
+   last_update.mteq:date
+   last_update.lteq:date
+   last_update.neq:date
+   last_update.eq:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/args
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.read
+   database:sakila
+   table:inventory
+   args
+   columns
+      inventory_id
+      film_id
+      store_id
+      last_update
+slots.return-nodes:x:@wait.slots.signal/*

@@ -1,0 +1,24 @@
+.arguments
+   actor_id:long
+   first_name:string
+   last_name:string
+   last_update:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/values
+   get-nodes:x:@.arguments/*
+unwrap:x:+/*/ids/*
+wait.slots.signal:magic.db.mysql.update
+   database:sakila
+   table:actor
+   values
+   ids
+      actor_id:x:@.arguments/*/actor_id
+slots.return-nodes:x:@wait.slots.signal/*

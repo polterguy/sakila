@@ -1,0 +1,31 @@
+/*
+ * Magic, Copyright(c) Thomas Hansen 2019 - 2020, thomas@servergardens.com, all rights reserved.
+ * See the enclosed LICENSE file for details.
+ */
+
+/*
+ * CSS styles specific for your app.component.html file.
+ */
+.login-card {
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5rem;
+    margin-top: 3rem;
+}
+
+.sidenav-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: 1.2rem;
+}
+
+.ajax-wait {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+}

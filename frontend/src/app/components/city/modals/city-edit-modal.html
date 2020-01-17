@@ -1,0 +1,48 @@
+
+<h1 mat-dialog-title>{{data.isEdit ? 'Edit' : 'Create'}} City</h1>
+<div mat-dialog-content>
+
+  <mat-form-field
+    class="entity-edit-field">
+    <input
+      matInput
+      placeholder="city"
+      [(ngModel)]="data.entity.city"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    class="entity-edit-field">
+    <input
+      matInput
+      placeholder="country_id"
+      [(ngModel)]="data.entity.country_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    class="entity-edit-field">
+    <input
+      matInput
+      placeholder="last_update"
+      [(ngModel)]="data.entity.last_update"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-button
+      (click)="save()">Save</button>
+
+    <button
+      mat-button
+      (click)="cancel()">Cancel</button>
+
+  </div>
+
+</div>

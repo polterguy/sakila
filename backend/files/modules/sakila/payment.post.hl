@@ -1,0 +1,24 @@
+.arguments
+   customer_id:long
+   staff_id:long
+   rental_id:long
+   amount:decimal
+   payment_date:date
+   last_update:date
+auth.ticket.verify:root
+lambda2hyper:x:@.arguments/*
+.log
+strings.concat
+   get-value:x:@.log
+   .:@" - Arguments: 
+"
+   get-value:x:@lambda2hyper
+log.info:x:@strings.concat
+add:x:./*/wait.slots.signal/*/values
+   get-nodes:x:@.arguments/*
+wait.slots.signal:magic.db.mysql.create
+   database:sakila
+   table:payment
+   return-id:bool:true
+   values
+slots.return-nodes:x:@wait.slots.signal/*

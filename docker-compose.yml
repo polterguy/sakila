@@ -21,8 +21,3 @@ services:
       - VIRTUAL_HOST=sakila.servergardens.com
       - LETSENCRYPT_HOST=sakila.servergardens.com
       - LETSENCRYPT_EMAIL=thomas@servergardens.com
-
-    # This pulls in our ".env" file, which will include the entirety of our main Magic docker-compose.yml file.
-    env_file:
-      - .env
-

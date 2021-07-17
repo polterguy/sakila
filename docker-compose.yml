@@ -21,3 +21,11 @@ services:
       - VIRTUAL_HOST=sakila.servergardens.com
       - LETSENCRYPT_HOST=sakila.servergardens.com
       - LETSENCRYPT_EMAIL=thomas@servergardens.com
+
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external:
+      name: nginx-proxy

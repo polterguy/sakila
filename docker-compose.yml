@@ -7,7 +7,7 @@ services:
   # This is the only thing that's actually exposed to the internet.
   nginx-proxy-crud:
     image: jwilder/nginx-proxy
-    container_name: nginx-proxy
+    container_name: nginx-proxy-crud
     ports:
       - "80:80"
       - "443:443"

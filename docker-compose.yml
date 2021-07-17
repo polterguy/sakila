@@ -1,8 +1,10 @@
-# This is a template part and needs to be copied and pasted into your main Magic container
-# docker-compose.yml file.
-# By adding the service below to your main Magic docker-compose file, you will serve your crudified
-# frontend as a part of the main docker-compose.yml file.
 
+# Notice, this file depends upon the ".env" file which pulls in the main docker-compose.yml file for Magic.
+version: "2"
+
+services:
+
+  # Your app's main container
   # Your app's main container
   sakila:
     container_name: sakila

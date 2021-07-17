@@ -60,3 +60,9 @@ networks:
   proxy:
     external:
       name: nginx-proxy
+
+volumes:
+  conf:
+  vhost:
+  dhparam:
+  certs:

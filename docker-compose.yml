@@ -22,12 +22,6 @@ services:
     networks:
       - proxy
 
-volumes:
-  conf:
-  vhost:
-  dhparam:
-  certs:
-
 networks:
   proxy:
     external:

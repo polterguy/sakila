@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+
+  sakila:
+    container_name: sakila
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    environment:
+
+      # REPLACE THESE NEXT 3 PARTS WITH YOUR OWN DOMAIN/EMAIL
+      - VIRTUAL_HOST=sakila.servergardens.com
+      - LETSENCRYPT_HOST=sakila.servergardens.com
+      - LETSENCRYPT_EMAIL=thomas@servergardens.com
+
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external:
+      name: nginx-proxy

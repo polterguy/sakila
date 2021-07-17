@@ -1,0 +1,59 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} Actor</h1>
+<div mat-dialog-content>
+
+  <mat-form-field
+    *ngIf="canEditColumn('actor_id')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('actor_id')"
+      placeholder="actor_id"
+      [(ngModel)]="data.entity.actor_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('first_name')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="text"
+      placeholder="first_name"
+      (change)="changed('first_name')"
+      [(ngModel)]="data.entity.first_name"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('last_name')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="text"
+      placeholder="last_name"
+      (change)="changed('last_name')"
+      [(ngModel)]="data.entity.last_name"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

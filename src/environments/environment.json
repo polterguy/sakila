@@ -1,0 +1,6 @@
+{
+  "apiUrl": "https://api.servergardens.com/",
+  "apiDomain": "api.servergardens.com",
+  "version": "1.0.0",
+  "default_language": "en-US"
+}

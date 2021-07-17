@@ -1,0 +1,185 @@
+<div fxFlex>
+  <mat-sidenav-container fxFill>
+    <mat-sidenav
+      #sidenav
+      [mode]="isMobile ? 'over' : 'side'"
+      [opened]="!isMobile"
+      [disableClose]="!isMobile"
+      ngClass.gt-sm="has-border"
+    >
+      <mat-toolbar color="primary">
+        <span translate>APP_NAME</span>
+        <div fxFlex></div>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #userMenu="matMenu">
+            <mat-list>
+              <mat-list-item>
+                <span translate>Logged in as</span><span>&nbsp;{{ username }}</span>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+            </mat-list>
+            <button mat-menu-item (click)="logout()" translate>Logout</button>
+          </mat-menu>
+        </div>
+        <app-language-selector icon="true"></app-language-selector>
+      </mat-toolbar>
+      <nav>
+        <mat-list>
+          <mat-divider></mat-divider>
+          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+            <span translate>Home</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/actor', 'get')"
+            mat-list-item
+            routerLink="crud/actor"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Actor</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/address', 'get')"
+            mat-list-item
+            routerLink="crud/address"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Address</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/category', 'get')"
+            mat-list-item
+            routerLink="crud/category"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Category</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/city', 'get')"
+            mat-list-item
+            routerLink="crud/city"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>City</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/country', 'get')"
+            mat-list-item
+            routerLink="crud/country"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Country</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/customer', 'get')"
+            mat-list-item
+            routerLink="crud/customer"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Customer</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/film_actor', 'get')"
+            mat-list-item
+            routerLink="crud/film_actor"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Film_actor</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/film_category', 'get')"
+            mat-list-item
+            routerLink="crud/film_category"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Film_category</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/film', 'get')"
+            mat-list-item
+            routerLink="crud/film"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Film</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/inventory', 'get')"
+            mat-list-item
+            routerLink="crud/inventory"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Inventory</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/language', 'get')"
+            mat-list-item
+            routerLink="crud/language"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Language</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/payment', 'get')"
+            mat-list-item
+            routerLink="crud/payment"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Payment</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/rental', 'get')"
+            mat-list-item
+            routerLink="crud/rental"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Rental</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/staff', 'get')"
+            mat-list-item
+            routerLink="crud/staff"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Staff</span>
+          </a>
+          <mat-divider></mat-divider>
+          <a
+            *ngIf="authService.me.canInvoke('magic/modules/sakila/store', 'get')"
+            mat-list-item
+            routerLink="crud/store"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
+            <span translate>Store</span>
+          </a>
+
+          <mat-divider></mat-divider>
+        </mat-list>
+      </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="mat-elevation-z6">
+        <button class="menu-button" mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{ title }}</span>
+      </mat-toolbar>
+      <router-outlet *ngIf="authService.hasEndpoints()"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

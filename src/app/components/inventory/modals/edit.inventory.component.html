@@ -1,0 +1,61 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} Inventory</h1>
+<div mat-dialog-content>
+
+  <mat-form-field
+    *ngIf="canEditColumn('inventory_id')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('inventory_id')"
+      placeholder="inventory_id"
+      [(ngModel)]="data.entity.inventory_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('film_id')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('film_id')"
+      placeholder="film_id"
+      [(ngModel)]="data.entity.film_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('store_id')"
+    class="entity-edit-field">
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('store_id')"
+      placeholder="store_id"
+      [(ngModel)]="data.entity.store_id"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

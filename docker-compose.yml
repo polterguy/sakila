@@ -2,6 +2,40 @@ version: "2"
 
 services:
 
+  # This is the internet facing reverse proxy that routes
+  # requests to your specific part, backend/frontend/etc.
+  # This is the only thing that's actually exposed to the internet.
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - dhparam:/etc/nginx/dhparam
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /usr/share/nginx/html
+    networks:
+      - proxy
+    restart: always
+
+  # This is the container that is responsible for retrieving
+  # and renewing SSL certificates from LetsEncrypt
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: nginx-proxy-le
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - proxy
+    restart: always
+
   # Your app's main container
   sakila:
     container_name: sakila

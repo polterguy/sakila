@@ -1,6 +1,7 @@
-version: "2"
-
-services:
+# This is a template part and needs to be copied and pasted into your main Magic container
+# docker-compose.yml file.
+# By adding the service below to your main Magic docker-compose file, you will serve your crudified
+# frontend as a part of the main docker-compose.yml file.
 
   # Your app's main container
   sakila:
@@ -19,10 +20,7 @@ services:
       - LETSENCRYPT_HOST=sakila.servergardens.com
       - LETSENCRYPT_EMAIL=thomas@servergardens.com
 
-    networks:
-      - proxy
+    # This pulls in our ".env" file, which will include the entirety of our main Magic docker-compose.yml file.
+    env_file:
+      - .env
 
-networks:
-  proxy:
-    external:
-      name: nginx-proxy

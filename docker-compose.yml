@@ -5,7 +5,6 @@ version: "2"
 services:
 
   # Your app's main container
-  # Your app's main container
   sakila:
     container_name: sakila
     restart: unless-stopped

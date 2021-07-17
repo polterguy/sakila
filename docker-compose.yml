@@ -5,9 +5,9 @@ services:
   # This is the internet facing reverse proxy that routes
   # requests to your specific part, backend/frontend/etc.
   # This is the only thing that's actually exposed to the internet.
-  nginx-proxy:
+  nginx-proxy-crud:
     image: jwilder/nginx-proxy
-    container_name: nginx-proxy-crud
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
@@ -24,9 +24,9 @@ services:
 
   # This is the container that is responsible for retrieving
   # and renewing SSL certificates from LetsEncrypt
-  letsencrypt:
+  letsencrypt-crud:
     image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: nginx-proxy-le-crud
+    container_name: nginx-proxy-le
     volumes_from:
       - nginx-proxy-crud
     volumes:

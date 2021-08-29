@@ -10,21 +10,21 @@ import { HomeComponent } from './home.component';
 import { Shell } from '@app/shell/shell.service';
 
 // Then importing all CRUD components.
-import { ActorComponent } from '../components/actor/actor.component';
-import { AddressComponent } from '../components/address/address.component';
-import { CategoryComponent } from '../components/category/category.component';
-import { CityComponent } from '../components/city/city.component';
-import { CountryComponent } from '../components/country/country.component';
-import { CustomerComponent } from '../components/customer/customer.component';
-import { Film_actorComponent } from '../components/film_actor/film_actor.component';
-import { Film_categoryComponent } from '../components/film_category/film_category.component';
-import { FilmComponent } from '../components/film/film.component';
-import { InventoryComponent } from '../components/inventory/inventory.component';
-import { LanguageComponent } from '../components/language/language.component';
-import { PaymentComponent } from '../components/payment/payment.component';
-import { RentalComponent } from '../components/rental/rental.component';
-import { StaffComponent } from '../components/staff/staff.component';
-import { StoreComponent } from '../components/store/store.component';
+import { Sakila_actorComponent } from '../components/sakila/actor/sakila_actor.component';
+import { Sakila_addressComponent } from '../components/sakila/address/sakila_address.component';
+import { Sakila_categoryComponent } from '../components/sakila/category/sakila_category.component';
+import { Sakila_cityComponent } from '../components/sakila/city/sakila_city.component';
+import { Sakila_countryComponent } from '../components/sakila/country/sakila_country.component';
+import { Sakila_customerComponent } from '../components/sakila/customer/sakila_customer.component';
+import { Sakila_film_actorComponent } from '../components/sakila/film_actor/sakila_film_actor.component';
+import { Sakila_film_categoryComponent } from '../components/sakila/film_category/sakila_film_category.component';
+import { Sakila_filmComponent } from '../components/sakila/film/sakila_film.component';
+import { Sakila_inventoryComponent } from '../components/sakila/inventory/sakila_inventory.component';
+import { Sakila_languageComponent } from '../components/sakila/language/sakila_language.component';
+import { Sakila_paymentComponent } from '../components/sakila/payment/sakila_payment.component';
+import { Sakila_rentalComponent } from '../components/sakila/rental/sakila_rental.component';
+import { Sakila_staffComponent } from '../components/sakila/staff/sakila_staff.component';
+import { Sakila_storeComponent } from '../components/sakila/store/sakila_store.component';
 
 
 const routes: Routes = [
@@ -32,21 +32,21 @@ const routes: Routes = [
     { path: '', component: HomeComponent, data: { title: marker('Home') } },
 
     // Then routes for all CRUD components.
-    { path: 'crud/actor', component: ActorComponent, data: { title: marker('actor') } },
-    { path: 'crud/address', component: AddressComponent, data: { title: marker('address') } },
-    { path: 'crud/category', component: CategoryComponent, data: { title: marker('category') } },
-    { path: 'crud/city', component: CityComponent, data: { title: marker('city') } },
-    { path: 'crud/country', component: CountryComponent, data: { title: marker('country') } },
-    { path: 'crud/customer', component: CustomerComponent, data: { title: marker('customer') } },
-    { path: 'crud/film_actor', component: Film_actorComponent, data: { title: marker('film_actor') } },
-    { path: 'crud/film_category', component: Film_categoryComponent, data: { title: marker('film_category') } },
-    { path: 'crud/film', component: FilmComponent, data: { title: marker('film') } },
-    { path: 'crud/inventory', component: InventoryComponent, data: { title: marker('inventory') } },
-    { path: 'crud/language', component: LanguageComponent, data: { title: marker('language') } },
-    { path: 'crud/payment', component: PaymentComponent, data: { title: marker('payment') } },
-    { path: 'crud/rental', component: RentalComponent, data: { title: marker('rental') } },
-    { path: 'crud/staff', component: StaffComponent, data: { title: marker('staff') } },
-    { path: 'crud/store', component: StoreComponent, data: { title: marker('store') } },
+    { path: 'crud/sakila/actor', component: Sakila_actorComponent, data: { title: marker('sakila/actor') } },
+    { path: 'crud/sakila/address', component: Sakila_addressComponent, data: { title: marker('sakila/address') } },
+    { path: 'crud/sakila/category', component: Sakila_categoryComponent, data: { title: marker('sakila/category') } },
+    { path: 'crud/sakila/city', component: Sakila_cityComponent, data: { title: marker('sakila/city') } },
+    { path: 'crud/sakila/country', component: Sakila_countryComponent, data: { title: marker('sakila/country') } },
+    { path: 'crud/sakila/customer', component: Sakila_customerComponent, data: { title: marker('sakila/customer') } },
+    { path: 'crud/sakila/film_actor', component: Sakila_film_actorComponent, data: { title: marker('sakila/film_actor') } },
+    { path: 'crud/sakila/film_category', component: Sakila_film_categoryComponent, data: { title: marker('sakila/film_category') } },
+    { path: 'crud/sakila/film', component: Sakila_filmComponent, data: { title: marker('sakila/film') } },
+    { path: 'crud/sakila/inventory', component: Sakila_inventoryComponent, data: { title: marker('sakila/inventory') } },
+    { path: 'crud/sakila/language', component: Sakila_languageComponent, data: { title: marker('sakila/language') } },
+    { path: 'crud/sakila/payment', component: Sakila_paymentComponent, data: { title: marker('sakila/payment') } },
+    { path: 'crud/sakila/rental', component: Sakila_rentalComponent, data: { title: marker('sakila/rental') } },
+    { path: 'crud/sakila/staff', component: Sakila_staffComponent, data: { title: marker('sakila/staff') } },
+    { path: 'crud/sakila/store', component: Sakila_storeComponent, data: { title: marker('sakila/store') } },
 
   ]),
 ];

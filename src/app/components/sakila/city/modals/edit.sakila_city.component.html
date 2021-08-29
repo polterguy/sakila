@@ -1,0 +1,62 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'City' | translate}}</h1>
+<div mat-dialog-content>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('country_id')"
+    [model]="data.entity"
+    field="country_id"
+    key="country_id"
+    table="country"
+    value="country"
+    [placeholder]="('Choose a ' | translate) + ('country_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('country_id')"
+    [getItems]="service.sakila_country">
+  </app-magic-autocomplete>
+
+  <mat-form-field
+    *ngIf="canEditColumn('city')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'city' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('city')"
+      [(ngModel)]="data.entity.city"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('city_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'city_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('city_id')"
+      [(ngModel)]="data.entity.city_id"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

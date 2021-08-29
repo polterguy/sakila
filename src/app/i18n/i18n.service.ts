@@ -9,6 +9,16 @@ import { Subscription } from 'rxjs';
 import { Logger } from '@core/logger.service';
 import enUS from '../../translations/en-US.json';
 import no from '../../translations/no.json';
+import es from '../../translations/es.json';
+import fr from '../../translations/fr.json';
+import it from '../../translations/it.json';
+import de from '../../translations/de.json';
+import pt from '../../translations/pt.json';
+import hi from '../../translations/hi.json';
+import ar from '../../translations/ar.json';
+import iw from '../../translations/iw.json';
+import zh from '../../translations/zh.json';
+import el from '../../translations/el.json';
 
 const log = new Logger('I18nService');
 const languageKey = 'language';
@@ -26,6 +36,16 @@ export class I18nService {
     // Embed languages to avoid extra HTTP requests
     translateService.setTranslation('en-US', enUS);
     translateService.setTranslation('no', no);
+    translateService.setTranslation('es', es);
+    translateService.setTranslation('fr', fr);
+    translateService.setTranslation('it', it);
+    translateService.setTranslation('de', de);
+    translateService.setTranslation('pt', pt);
+    translateService.setTranslation('hi', hi);
+    translateService.setTranslation('ar', ar);
+    translateService.setTranslation('iw', iw);
+    translateService.setTranslation('zh', zh);
+    translateService.setTranslation('el', el);
   }
 
   /**

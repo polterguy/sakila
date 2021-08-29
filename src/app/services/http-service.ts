@@ -101,9 +101,9 @@ export class HttpService {
    */
 
   /**
-   * HTTP CRUD service methods for your 'actor' entities.
+   * HTTP CRUD service methods for your 'sakila_actor' entities.
    */
-  get actor() : ICrudEntity {
+  get sakila_actor() : ICrudEntity {
 
     return {
 
@@ -145,9 +145,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'address' entities.
+   * HTTP CRUD service methods for your 'sakila_address' entities.
    */
-  get address() : ICrudEntity {
+  get sakila_address() : ICrudEntity {
 
     return {
 
@@ -189,9 +189,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'category' entities.
+   * HTTP CRUD service methods for your 'sakila_category' entities.
    */
-  get category() : ICrudEntity {
+  get sakila_category() : ICrudEntity {
 
     return {
 
@@ -233,9 +233,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'city' entities.
+   * HTTP CRUD service methods for your 'sakila_city' entities.
    */
-  get city() : ICrudEntity {
+  get sakila_city() : ICrudEntity {
 
     return {
 
@@ -277,9 +277,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'country' entities.
+   * HTTP CRUD service methods for your 'sakila_country' entities.
    */
-  get country() : ICrudEntity {
+  get sakila_country() : ICrudEntity {
 
     return {
 
@@ -321,9 +321,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'customer' entities.
+   * HTTP CRUD service methods for your 'sakila_customer' entities.
    */
-  get customer() : ICrudEntity {
+  get sakila_customer() : ICrudEntity {
 
     return {
 
@@ -365,9 +365,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'film_actor' entities.
+   * HTTP CRUD service methods for your 'sakila_film_actor' entities.
    */
-  get film_actor() : ICrdEntity {
+  get sakila_film_actor() : ICrdEntity {
 
     return {
 
@@ -402,9 +402,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'film_category' entities.
+   * HTTP CRUD service methods for your 'sakila_film_category' entities.
    */
-  get film_category() : ICrdEntity {
+  get sakila_film_category() : ICrdEntity {
 
     return {
 
@@ -439,9 +439,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'film' entities.
+   * HTTP CRUD service methods for your 'sakila_film' entities.
    */
-  get film() : ICrudEntity {
+  get sakila_film() : ICrudEntity {
 
     return {
 
@@ -483,9 +483,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'inventory' entities.
+   * HTTP CRUD service methods for your 'sakila_inventory' entities.
    */
-  get inventory() : ICrudEntity {
+  get sakila_inventory() : ICrudEntity {
 
     return {
 
@@ -527,9 +527,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'language' entities.
+   * HTTP CRUD service methods for your 'sakila_language' entities.
    */
-  get language() : ICrudEntity {
+  get sakila_language() : ICrudEntity {
 
     return {
 
@@ -571,9 +571,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'payment' entities.
+   * HTTP CRUD service methods for your 'sakila_payment' entities.
    */
-  get payment() : ICrudEntity {
+  get sakila_payment() : ICrudEntity {
 
     return {
 
@@ -615,9 +615,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'rental' entities.
+   * HTTP CRUD service methods for your 'sakila_rental' entities.
    */
-  get rental() : ICrudEntity {
+  get sakila_rental() : ICrudEntity {
 
     return {
 
@@ -659,9 +659,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'staff' entities.
+   * HTTP CRUD service methods for your 'sakila_staff' entities.
    */
-  get staff() : ICrudEntity {
+  get sakila_staff() : ICrudEntity {
 
     return {
 
@@ -703,9 +703,9 @@ export class HttpService {
   }
 
   /**
-   * HTTP CRUD service methods for your 'store' entities.
+   * HTTP CRUD service methods for your 'sakila_store' entities.
    */
-  get store() : ICrudEntity {
+  get sakila_store() : ICrudEntity {
 
     return {
 
@@ -746,6 +746,54 @@ export class HttpService {
     }
   }
 
+
+  /**
+   * Uploads an image to your backend.
+   *
+   * @param url Backend relative endpoint URL
+   * @param content Base64 encoded image data
+   * @param type Type of image, such as 'jpeg', 'png', etc
+   * @param old_file Optional name of old file, which if existing and specified will be deleted
+   */
+   public uploadImage(
+     url: string,
+     content: string,
+     type: string,
+     old_file?: string) {
+
+    // Invoking backend with the specified arguments.
+    // NOTICE! If you want to handle image uploading, you'll need a backend endpoint.
+    if (url.indexOf('/') !== 0) {
+      url = '/' + url;
+    }
+    return this.httpClient.put<any>(`magic/modules${url}`, {
+      content,
+      type,
+      old_file,
+    });
+  }
+
+  /**
+   * Uploads a file to your backend.
+   *
+   * @param url Backend relative endpoint URL
+   * @param file File you want to upload
+   * @param old_file Optional name of old file, which if existing and specified will be deleted
+   */
+   public uploadFile(url: string, file: any, old_file: string) {
+
+    // Invoking backend with a form data object containing file.
+    // NOTICE! If you want to handle file uploading, you'll need a backend endpoint.
+    if (url.indexOf('/') !== 0) {
+      url = '/' + url;
+    }
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    if (old_file) {
+      formData.append('old_file', old_file);
+    }
+    return this.httpClient.put<any>(`magic/modules${url}`, formData);
+  }
 
   /*
    * Creates QUERY parameters from the specified "args" argument given.

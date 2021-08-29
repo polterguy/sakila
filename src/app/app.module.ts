@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
@@ -16,43 +17,52 @@ import { AuthModule } from '@app/auth';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
+import { MagicSelectorComponent } from './helpers/magic-selector/magic-selector.component';
+import { MagicAutocompleteComponent } from './helpers/magic-autocomplete/magic-autocomplete.component';
+import { MagicFilterComponent } from './helpers/magic-filter/magic-filter.component';
+import { MagicImageComponent } from './helpers/magic-image/magic-image.component';
+import { MagicImageViewComponent } from './helpers/magic-image-view/magic-image-view.component';
+import { MagicFileViewComponent } from './helpers/magic-file-view/magic-file-view.component';
+import { MagicFileComponent } from './helpers/magic-file/magic-file.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '@env/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { FormatDatePipe } from './pipes/format-date-pipe';
+import { DateSincePipe } from './pipes/date-since.pipe';
+import { ConfirmDialogComponent } from './confirm-deletion-dialog/confirm-dialog.component';
 
 // Generated CRUD components here.
-import { ActorComponent } from './components/actor/actor.component';
-import { EditActorComponent } from './components/actor/modals/edit.actor.component';
-import { AddressComponent } from './components/address/address.component';
-import { EditAddressComponent } from './components/address/modals/edit.address.component';
-import { CategoryComponent } from './components/category/category.component';
-import { EditCategoryComponent } from './components/category/modals/edit.category.component';
-import { CityComponent } from './components/city/city.component';
-import { EditCityComponent } from './components/city/modals/edit.city.component';
-import { CountryComponent } from './components/country/country.component';
-import { EditCountryComponent } from './components/country/modals/edit.country.component';
-import { CustomerComponent } from './components/customer/customer.component';
-import { EditCustomerComponent } from './components/customer/modals/edit.customer.component';
-import { Film_actorComponent } from './components/film_actor/film_actor.component';
-import { EditFilm_actorComponent } from './components/film_actor/modals/edit.film_actor.component';
-import { Film_categoryComponent } from './components/film_category/film_category.component';
-import { EditFilm_categoryComponent } from './components/film_category/modals/edit.film_category.component';
-import { FilmComponent } from './components/film/film.component';
-import { EditFilmComponent } from './components/film/modals/edit.film.component';
-import { InventoryComponent } from './components/inventory/inventory.component';
-import { EditInventoryComponent } from './components/inventory/modals/edit.inventory.component';
-import { LanguageComponent } from './components/language/language.component';
-import { EditLanguageComponent } from './components/language/modals/edit.language.component';
-import { PaymentComponent } from './components/payment/payment.component';
-import { EditPaymentComponent } from './components/payment/modals/edit.payment.component';
-import { RentalComponent } from './components/rental/rental.component';
-import { EditRentalComponent } from './components/rental/modals/edit.rental.component';
-import { StaffComponent } from './components/staff/staff.component';
-import { EditStaffComponent } from './components/staff/modals/edit.staff.component';
-import { StoreComponent } from './components/store/store.component';
-import { EditStoreComponent } from './components/store/modals/edit.store.component';
+import { Sakila_actorComponent } from './components/sakila/actor/sakila_actor.component';
+import { EditSakila_actorComponent } from './components/sakila/actor/modals/edit.sakila_actor.component';
+import { Sakila_addressComponent } from './components/sakila/address/sakila_address.component';
+import { EditSakila_addressComponent } from './components/sakila/address/modals/edit.sakila_address.component';
+import { Sakila_categoryComponent } from './components/sakila/category/sakila_category.component';
+import { EditSakila_categoryComponent } from './components/sakila/category/modals/edit.sakila_category.component';
+import { Sakila_cityComponent } from './components/sakila/city/sakila_city.component';
+import { EditSakila_cityComponent } from './components/sakila/city/modals/edit.sakila_city.component';
+import { Sakila_countryComponent } from './components/sakila/country/sakila_country.component';
+import { EditSakila_countryComponent } from './components/sakila/country/modals/edit.sakila_country.component';
+import { Sakila_customerComponent } from './components/sakila/customer/sakila_customer.component';
+import { EditSakila_customerComponent } from './components/sakila/customer/modals/edit.sakila_customer.component';
+import { Sakila_film_actorComponent } from './components/sakila/film_actor/sakila_film_actor.component';
+import { EditSakila_film_actorComponent } from './components/sakila/film_actor/modals/edit.sakila_film_actor.component';
+import { Sakila_film_categoryComponent } from './components/sakila/film_category/sakila_film_category.component';
+import { EditSakila_film_categoryComponent } from './components/sakila/film_category/modals/edit.sakila_film_category.component';
+import { Sakila_filmComponent } from './components/sakila/film/sakila_film.component';
+import { EditSakila_filmComponent } from './components/sakila/film/modals/edit.sakila_film.component';
+import { Sakila_inventoryComponent } from './components/sakila/inventory/sakila_inventory.component';
+import { EditSakila_inventoryComponent } from './components/sakila/inventory/modals/edit.sakila_inventory.component';
+import { Sakila_languageComponent } from './components/sakila/language/sakila_language.component';
+import { EditSakila_languageComponent } from './components/sakila/language/modals/edit.sakila_language.component';
+import { Sakila_paymentComponent } from './components/sakila/payment/sakila_payment.component';
+import { EditSakila_paymentComponent } from './components/sakila/payment/modals/edit.sakila_payment.component';
+import { Sakila_rentalComponent } from './components/sakila/rental/sakila_rental.component';
+import { EditSakila_rentalComponent } from './components/sakila/rental/modals/edit.sakila_rental.component';
+import { Sakila_staffComponent } from './components/sakila/staff/sakila_staff.component';
+import { EditSakila_staffComponent } from './components/sakila/staff/modals/edit.sakila_staff.component';
+import { Sakila_storeComponent } from './components/sakila/store/sakila_store.component';
+import { EditSakila_storeComponent } from './components/sakila/store/modals/edit.sakila_store.component';
 
 
 @NgModule({
@@ -87,42 +97,51 @@ import { EditStoreComponent } from './components/store/modals/edit.store.compone
   ],
   declarations: [
     AppComponent,
+    MagicSelectorComponent,
+    MagicAutocompleteComponent,
+    MagicFilterComponent,
+    MagicImageComponent,
+    MagicImageViewComponent,
+    MagicFileViewComponent,
+    MagicFileComponent,
     FormatDatePipe,
+    DateSincePipe,
+    ConfirmDialogComponent,
 
 // Generated CRUD components here.
-    ActorComponent,
-    EditActorComponent,
-    AddressComponent,
-    EditAddressComponent,
-    CategoryComponent,
-    EditCategoryComponent,
-    CityComponent,
-    EditCityComponent,
-    CountryComponent,
-    EditCountryComponent,
-    CustomerComponent,
-    EditCustomerComponent,
-    Film_actorComponent,
-    EditFilm_actorComponent,
-    Film_categoryComponent,
-    EditFilm_categoryComponent,
-    FilmComponent,
-    EditFilmComponent,
-    InventoryComponent,
-    EditInventoryComponent,
-    LanguageComponent,
-    EditLanguageComponent,
-    PaymentComponent,
-    EditPaymentComponent,
-    RentalComponent,
-    EditRentalComponent,
-    StaffComponent,
-    EditStaffComponent,
-    StoreComponent,
-    EditStoreComponent,
+    Sakila_actorComponent,
+    EditSakila_actorComponent,
+    Sakila_addressComponent,
+    EditSakila_addressComponent,
+    Sakila_categoryComponent,
+    EditSakila_categoryComponent,
+    Sakila_cityComponent,
+    EditSakila_cityComponent,
+    Sakila_countryComponent,
+    EditSakila_countryComponent,
+    Sakila_customerComponent,
+    EditSakila_customerComponent,
+    Sakila_film_actorComponent,
+    EditSakila_film_actorComponent,
+    Sakila_film_categoryComponent,
+    EditSakila_film_categoryComponent,
+    Sakila_filmComponent,
+    EditSakila_filmComponent,
+    Sakila_inventoryComponent,
+    EditSakila_inventoryComponent,
+    Sakila_languageComponent,
+    EditSakila_languageComponent,
+    Sakila_paymentComponent,
+    EditSakila_paymentComponent,
+    Sakila_rentalComponent,
+    EditSakila_rentalComponent,
+    Sakila_staffComponent,
+    EditSakila_staffComponent,
+    Sakila_storeComponent,
+    EditSakila_storeComponent,
   ],
 
-  providers: [],
+  providers: [NgxImageCompressService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

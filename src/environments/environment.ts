@@ -25,7 +25,7 @@ export const environment = {
   apiUrl: env.apiUrl,
   apiDomain: env.apiDomain,
   defaultLanguage: env.default_language,
-  supportedLanguages: ['en-US', 'no'],
+  supportedLanguages: ['en-US', 'no', 'fr', 'es', 'it', 'de', 'pt', 'hi', 'ar', 'iw', 'zh', 'el'],
 };
 
 /*

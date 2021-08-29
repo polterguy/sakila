@@ -1,0 +1,332 @@
+
+<div class="component-wrapper">
+
+  <div class="mat-elevation-z4 relativized grid-wrapper">
+
+    <button
+      mat-raised-button
+      *ngIf="authService.me.canInvoke(url(), 'post') && httpService['sakila_customer']['create']"
+      class="create-button"
+      [matTooltip]="('Create' | translate) + (' Customer' | translate)"
+      (click)="createEntity()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+
+    <table
+      mat-table
+      multiTemplateDataRows
+      [dataSource]="data">
+
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'first_name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="first_name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('first_name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('first_name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['first_name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'last_name' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="last_name">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('last_name')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('last_name')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['last_name']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address_id.address">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'address_id.address' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="address_id_address">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('address_id.address')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('address_id.address')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['address_id.address']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'email' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="email">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('email')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('email')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['email']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="create_date">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'create_date' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="create_date">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('create_date')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('create_date')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['create_date'] | formatDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="last_update">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'last_update' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="last_update">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('last_update')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('last_update')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer_id">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'customer_id' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="customer_id">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('customer_id')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('customer_id')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['customer_id']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="store_id">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'store_id' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="store_id">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('store_id')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('store_id')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['store_id']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="address_id">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'address_id' | translate}}</mat-label>
+            <input
+              matInput
+              type="number"
+              autocomplete="off"
+              [formControl]="address_id">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('address_id')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('address_id')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['address_id']}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline" class="fill-width filter-textbox">
+            <mat-label>{{'active' | translate}}</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControl]="active">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            class="sort-button"
+            (click)="sort('active')"
+            mat-button>
+            <mat-icon matSuffix>{{getSortIcon('active')}}</mat-icon>
+          </button>
+        </th>
+        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">
+          <mat-icon 
+            *ngIf="el['active'] === true"
+            matSuffix>check</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete-instance">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="authService.me.canInvoke(url(), 'delete') && httpService['sakila_customer']['delete'] ? 'delete-column' : 'hidden'"></th>
+
+        <td
+          mat-cell
+          *matCellDef="let el"
+          [ngClass]="authService.me.canInvoke(url(), 'delete') && httpService['sakila_customer']['delete'] ? 'delete-column' : 'hidden'">
+          <button
+            mat-button
+            (click)="deleteEntity(el, {customer_id: el.customer_id})"
+            [matTooltip]="'Delete this record' | translate">
+            <mat-icon matSuffix>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <td
+          mat-cell
+          *matCellDef="let el"
+          colspan="9">
+          <div
+            class="details-sheet"
+            *ngIf="shouldDisplayDetails(el)">
+            <button
+              *ngIf="authService.me.canInvoke(url(), 'put') && httpService['sakila_customer']['update']"
+              mat-button
+              color="primary"
+              class="edit-button"
+              [matTooltip]="'Edit' | translate"
+              (click)="editEntity(el)">
+              <mat-icon matSuffix>edit</mat-icon>
+            </button>
+            <p class="details">
+              <label>{{'first_name' | translate}}</label>
+              <span>{{el['first_name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'last_name' | translate}}</label>
+              <span>{{el['last_name']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'address_id.address' | translate}}</label>
+              <span>{{el['address_id.address']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'email' | translate}}</label>
+              <span>{{el['email']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'create_date' | translate}}</label>
+              <span>{{el['create_date'] | formatDate}}</span>
+            </p>
+            <p class="details">
+              <label>{{'last_update' | translate}}</label>
+              <span>{{el['last_update'] | formatDate}}</span>
+            </p>
+            <p class="details">
+              <label>{{'store_id' | translate}}</label>
+              <span>{{el['store_id']}}</span>
+            </p>
+            <p class="details">
+              <label>{{'active' | translate}}</label>
+              <mat-icon *ngIf="el['active'] === true" matSuffix>check_box</mat-icon>
+              <mat-icon *ngIf="el['active'] === false" matSuffix>check_box_outline_blank</mat-icon>
+            </p>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+
+      <tr
+        mat-row
+        [ngClass]="getClassForRecord(row)"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr
+        mat-row
+        [ngClass]="getClassForDetails(row)"
+        *matRowDef="let row; columns: ['details']; "></tr>
+
+    </table>
+    <mat-paginator
+      #paginator
+      [(length)]="itemsCount"
+      [(pageSize)]="filter.limit"
+      (page)="paged($event)"
+      [pageSizeOptions]="[5,10,25,50]">
+    </mat-paginator>
+
+  </div>
+
+</div>

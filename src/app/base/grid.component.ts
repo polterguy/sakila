@@ -8,11 +8,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 // Custom services and models your app depends upon.
 import { DeleteResponse } from '../services/models/delete-response';
 import { CountResponse } from '../services/models/count-response';
 import { AuthService } from 'src/app/services/auth-service';
+import { ConfirmDialogComponent, ConfirmDialogData } from '@app/confirm-deletion-dialog/confirm-dialog.component';
+import { IREntity } from '@app/services/interfaces/crud-interfaces';
 
 /**
  * Base class for all "data-grid" components, displaying items to
@@ -56,10 +59,12 @@ export abstract class GridComponent {
    * 
    * @param authService Authentication and authorization service
    * @param snackBar Snack bar to use to display errors, and also general information
+   * @param dialog Needed to ask for user's confirmtion during deletion of entities
    */
   constructor(
     protected authService: AuthService,
-    protected snackBar: MatSnackBar) { }
+    protected snackBar: MatSnackBar,
+    protected dialog: MatDialog) { }
 
   /**
    * Abstract method you'll need to override to actually return URL of
@@ -113,7 +118,7 @@ export abstract class GridComponent {
    * 
    * @param countRecords Whether or not we should also retrieve and update count of records
    */
-  protected getData(countRecords: boolean = true) {
+  public getData(countRecords: boolean = true) {
 
     this.viewDetails = [];
 
@@ -172,9 +177,31 @@ export abstract class GridComponent {
       return;
     }
 
-    this.delete(ids).subscribe((res: DeleteResponse) => {
-      this.getData();
-    }, (error: any) => this.showError(error));
+    // Asking user to confirm deletion of entity.
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '550px',
+      data: {
+        title: 'Confirm action',
+        text: 'Please confirm deletion of entity. Notice, this action cannot be undone. Deletion is permanent',
+      }
+    });
+
+    // Subscribing to close such that we can delete schedule if it's confirmed.
+    dialogRef.afterClosed().subscribe((result: ConfirmDialogData) => {
+
+      // Checking if user confirmed that he wants to delete the schedule.
+      if (result && result.confirmed) {
+
+        // Deleting entity
+        this.delete(ids).subscribe((res: DeleteResponse) => {
+            this.getData();
+        }, (error: any) => {
+          this.showError('I could not delete your entity, maybe other entities are referencing it?');
+          console.error(error);
+        });
+    
+      }
+    });
   }
 
   /**
@@ -339,6 +366,67 @@ export abstract class GridComponent {
   }
 
   /**
+   * Invoked when a referenced item needs to be fetched to display
+   * some foreign key lookup value.
+   * 
+   * @param cacheStorageName Name of cache storage
+   * @param id ID to lookup into cache
+   * @param param Parameter to add when doing lookup towards server
+   * @param functor Cache item read function to invoke if we have a cache miss
+   * @param property Property to return to caller from objact
+   */
+  private cache: any = {};
+  public getCachedItem(
+    cacheStorageName: string,
+    id: any,
+    param: string,
+    entityStorage: IREntity,
+    property: string) {
+
+    // Making sure this is not a null value.
+    if (!id) {
+      return '';
+    }
+
+    // In case lookup field is the value field, we simply return it immediately as is.
+    if (cacheStorageName + '.eq' === param) {
+      return id; // No need to invoke server at all.
+    }
+
+    // In case display field is the same as the filter field, we simply return it immediately as is.
+    if (property +'.eq' === param) {
+      return id; // No need to invoke server at all.
+    }
+
+    // Making sure we've got cache storage for specified cache type.
+    if (!this.cache[cacheStorageName]) {
+      this.cache[cacheStorageName] = {};
+    }
+
+    // Checking if we already have this item in our cache.
+    if (this.cache[cacheStorageName]['id_' + id]) {
+
+      // Item found in cache.
+      return this.cache[cacheStorageName]['id_' + id][property];
+    }
+
+    // Checking if another invocation previously have started the fetching process to retrieve item from server.
+    if (this.cache[cacheStorageName]['id_' + id] === undefined) {
+
+      // Making sure only ONE invocation actually invokes server.
+      this.cache[cacheStorageName]['id_' + id] = null;
+      entityStorage.read({[param]: id}).subscribe((result: any[]) => {
+
+        // Applying item to cache.
+        this.cache[cacheStorageName]['id_' + id] = result[0];
+      });
+    }
+
+    // Waiting for server method to return - Hence, while we wait, we simply return the ID of the element.
+    return id;
+  }
+ 
+  /**
    * Shows an HTTP error, or some other error
    * 
    * @param error HTTP error or normal error to display.
@@ -348,8 +436,7 @@ export abstract class GridComponent {
       error?.error?.message ||
         (error.status ? error.status + ' - ' + error.statusText : error),
       'Close', {
-      duration: 5000,
-      panelClass: ['error-snackbar'],
+      duration: 10000,
     });
   }
 

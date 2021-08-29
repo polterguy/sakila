@@ -1,5 +1,5 @@
 {
-  "name": "angular-light",
+  "name": "sakila",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,6 @@
     "write:env": "ngx-scripts env npm_package_version",
     "prettier": "prettier --write \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
     "prettier:check": "prettier --list-different \"./{src,e2e}/**/*.{ts,js,html,scss}\"",
-    "postinstall": "npm run prettier -s",
     "generate": "ng generate"
   },
   "dependencies": {
@@ -35,6 +34,7 @@
     "@ngx-translate/core": "^13.0.0",
     "material-design-icons-iconfont": "^6.1.0",
     "moment": "^2.29.1",
+    "ngx-image-compress": "^11.0.3",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.1",
     "zone.js": "~0.10.3"

@@ -1,0 +1,48 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Film_category' | translate}}</h1>
+<div mat-dialog-content>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('film_id')"
+    [model]="data.entity"
+    field="film_id"
+    key="film_id"
+    table="film"
+    value="title"
+    [placeholder]="('Choose a ' | translate) + ('film_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('film_id')"
+    [getItems]="service.sakila_film">
+  </app-magic-autocomplete>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('category_id')"
+    [model]="data.entity"
+    field="category_id"
+    key="category_id"
+    table="category"
+    value="name"
+    [placeholder]="('Choose a ' | translate) + ('category_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('category_id')"
+    [getItems]="service.sakila_category">
+  </app-magic-autocomplete>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

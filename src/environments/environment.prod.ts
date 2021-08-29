@@ -13,7 +13,7 @@
 // Note that as usual, any environment variables you expose through it will end up in your
 // bundle, and you should not use it for any sensitive information like passwords or keys.
 // import { env } from './.env';
-import env from './environment.json';
+import env from './environment.prod.json';
 
 export const environment = {
   production: true,
@@ -21,5 +21,5 @@ export const environment = {
   apiUrl: env.apiUrl,
   apiDomain: env.apiDomain,
   defaultLanguage: env.default_language,
-  supportedLanguages: ['en-US', 'no'],
+  supportedLanguages: ['en-US', 'no', 'fr', 'es', 'it', 'de', 'pt', 'hi', 'ar', 'iw', 'zh', 'el'],
 };

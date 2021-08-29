@@ -1,3 +1,8 @@
+<div class="obscurer" *ngIf="showObscurer">
+  <mat-spinner
+    diameter="50"></mat-spinner>
+</div>
+
 <div fxFlex>
   <mat-sidenav-container fxFill>
     <mat-sidenav
@@ -29,14 +34,19 @@
       <nav>
         <mat-list>
           <mat-divider></mat-divider>
-          <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="isMobile && sidenav.close()">
+          <a
+            mat-list-item
+            routerLink="/"
+            [routerLinkActiveOptions]="{exact: true}"
+            routerLinkActive="active"
+            (click)="isMobile && sidenav.close()">
             <span translate>Home</span>
           </a>
           <mat-divider></mat-divider>
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/actor', 'get')"
             mat-list-item
-            routerLink="crud/actor"
+            routerLink="crud/sakila/actor"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Actor</span>
@@ -45,7 +55,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/address', 'get')"
             mat-list-item
-            routerLink="crud/address"
+            routerLink="crud/sakila/address"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Address</span>
@@ -54,7 +64,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/category', 'get')"
             mat-list-item
-            routerLink="crud/category"
+            routerLink="crud/sakila/category"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Category</span>
@@ -63,7 +73,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/city', 'get')"
             mat-list-item
-            routerLink="crud/city"
+            routerLink="crud/sakila/city"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>City</span>
@@ -72,7 +82,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/country', 'get')"
             mat-list-item
-            routerLink="crud/country"
+            routerLink="crud/sakila/country"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Country</span>
@@ -81,7 +91,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/customer', 'get')"
             mat-list-item
-            routerLink="crud/customer"
+            routerLink="crud/sakila/customer"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Customer</span>
@@ -90,7 +100,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/film_actor', 'get')"
             mat-list-item
-            routerLink="crud/film_actor"
+            routerLink="crud/sakila/film_actor"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Film_actor</span>
@@ -99,7 +109,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/film_category', 'get')"
             mat-list-item
-            routerLink="crud/film_category"
+            routerLink="crud/sakila/film_category"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Film_category</span>
@@ -108,7 +118,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/film', 'get')"
             mat-list-item
-            routerLink="crud/film"
+            routerLink="crud/sakila/film"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Film</span>
@@ -117,7 +127,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/inventory', 'get')"
             mat-list-item
-            routerLink="crud/inventory"
+            routerLink="crud/sakila/inventory"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Inventory</span>
@@ -126,7 +136,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/language', 'get')"
             mat-list-item
-            routerLink="crud/language"
+            routerLink="crud/sakila/language"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Language</span>
@@ -135,7 +145,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/payment', 'get')"
             mat-list-item
-            routerLink="crud/payment"
+            routerLink="crud/sakila/payment"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Payment</span>
@@ -144,7 +154,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/rental', 'get')"
             mat-list-item
-            routerLink="crud/rental"
+            routerLink="crud/sakila/rental"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Rental</span>
@@ -153,7 +163,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/staff', 'get')"
             mat-list-item
-            routerLink="crud/staff"
+            routerLink="crud/sakila/staff"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Staff</span>
@@ -162,7 +172,7 @@
           <a
             *ngIf="authService.me.canInvoke('magic/modules/sakila/store', 'get')"
             mat-list-item
-            routerLink="crud/store"
+            routerLink="crud/sakila/store"
             routerLinkActive="active"
             (click)="isMobile && sidenav.close()">
             <span translate>Store</span>

@@ -1,0 +1,108 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Staff' | translate}}</h1>
+<div mat-dialog-content>
+
+  <mat-form-field
+    *ngIf="canEditColumn('first_name')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'first_name' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('first_name')"
+      [(ngModel)]="data.entity.first_name"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('last_name')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'last_name' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('last_name')"
+      [(ngModel)]="data.entity.last_name"
+      autocomplete="off">
+  </mat-form-field>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('address_id')"
+    [model]="data.entity"
+    field="address_id"
+    key="address_id"
+    table="address"
+    value="address"
+    [placeholder]="('Choose a ' | translate) + ('address_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('address_id')"
+    [getItems]="service.sakila_address">
+  </app-magic-autocomplete>
+
+  <mat-form-field
+    *ngIf="canEditColumn('email')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'email' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('email')"
+      [(ngModel)]="data.entity.email"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('staff_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'staff_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('staff_id')"
+      [(ngModel)]="data.entity.staff_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('store_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'store_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('store_id')"
+      [(ngModel)]="data.entity.store_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-checkbox
+    *ngIf="canEditColumn('active')"
+    class="entity-edit-field"
+    (change)="changed('active')"
+    [(ngModel)]="data.entity.active">active</mat-checkbox>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

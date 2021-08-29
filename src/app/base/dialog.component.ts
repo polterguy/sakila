@@ -111,39 +111,49 @@ export abstract class DialogComponent {
       return;
     }
 
-    // Checking if this is edit invocation or create invocation.
-    if (this.getData().isEdit) {
+    // Making sure we set all values having an empty string to 'null values'.
+    const data = this.getData();
+    for (const idx in data.entity) {
+      if (data.entity[idx] === '') {
 
-      for (const idx in this.getData().entity) {
+        // Changing value to NULL.
+        data.entity[idx] = null;
+      }
+    }
+
+    // Checking if this is edit invocation or create invocation.
+    if (data.isEdit) {
+
+      for (const idx in data.entity) {
         if (this.updateColumns.indexOf(idx) === -1 ||
           (this.primaryKeys.indexOf(idx) === -1 &&
             this.changedValues.indexOf(idx) === -1)) {
-          delete this.getData().entity[idx];
+          delete data.entity[idx];
         }
       }
 
       this.getUpdateMethod().subscribe((res: UpdateResponse) => {
         this.close(this.getData().entity);
       }, (error: any) => {
-        this.snackBar.open(error.error.message, 'Close', {
-          duration: 5000,
-          panelClass: ['error-snackbar'],
+        console.error(error);
+        this.snackBar.open('I could not update your entity, are you sure you supplied correct data?', 'Close', {
+          duration: 10000,
         });
       });
     } else {
 
-      for (const idx in this.getData().entity) {
+      for (const idx in data.entity) {
         if (this.createColumns.indexOf(idx) === -1) {
-          delete this.getData().entity[idx];
+          delete data.entity[idx];
         }
       }
 
       this.getCreateMethod().subscribe((res: CreateResponse) => {
         this.close(this.getData().entity);
       }, (error: any) => {
-        this.snackBar.open(error.error.message, 'Close', {
-          duration: 5000,
-          panelClass: ['error-snackbar'],
+        console.error(error);
+        this.snackBar.open('I could not create your entity, are you sure you supplied correct data?', 'Close', {
+          duration: 10000,
         });
       });
     }

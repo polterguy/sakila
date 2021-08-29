@@ -1,5 +1,5 @@
 {
-  "APP_NAME": "Sakila",
+  "APP_NAME": "sakila",
   "About": "Om",
   "Hello world!": "Halla kompis!",
   "Home": "Hjem",
@@ -16,5 +16,8 @@
   "Save": "Lagre",
   "Cancel": "Avbryt",
   "Edit": "Rediger",
-  "Create": "Lag"
+  "Create": "Lag",
+  "Filter": "Filtrer",
+  "Delete this record": "Slett denne raden",
+  "Choose a ": "Velg en "
 }

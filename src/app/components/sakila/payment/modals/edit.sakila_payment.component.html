@@ -1,0 +1,105 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Payment' | translate}}</h1>
+<div mat-dialog-content>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('customer_id')"
+    [model]="data.entity"
+    field="customer_id"
+    key="customer_id"
+    table="customer"
+    value="first_name"
+    [placeholder]="('Choose a ' | translate) + ('customer_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('customer_id')"
+    [getItems]="service.sakila_customer">
+  </app-magic-autocomplete>
+
+  <app-magic-selector
+    *ngIf="canEditColumn('staff_id')"
+    [model]="data.entity"
+    field="staff_id"
+    key="staff_id"
+    value="first_name"
+    [placeholder]="('Choose a ' | translate) + ('staff_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('staff_id')"
+    [getItems]="service.sakila_staff.read({limit:-1})">
+  </app-magic-selector>
+
+  <mat-form-field
+    *ngIf="canEditColumn('payment_date')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'payment_date' | translate}}</mat-label>
+    <input
+      matInput
+      (change)="changed('payment_date')"
+      [owlDateTime]="pickerpayment_date"
+      [owlDateTimeTrigger]="pickerpayment_date"
+      [(ngModel)]="data.entity.payment_date"
+      autocomplete="off">
+    <owl-date-time #pickerpayment_date (afterPickerClosed)="changed('payment_date')"></owl-date-time>
+    <mat-icon matSuffix matDatepickerToggleIcon>calendar_today</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('payment_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'payment_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('payment_id')"
+      [(ngModel)]="data.entity.payment_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('rental_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'rental_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('rental_id')"
+      [(ngModel)]="data.entity.rental_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('amount')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'amount' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="any"
+      (change)="changed('amount')"
+      [(ngModel)]="data.entity.amount"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

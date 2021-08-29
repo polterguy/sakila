@@ -1,0 +1,181 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Film' | translate}}</h1>
+<div mat-dialog-content>
+
+  <app-magic-selector
+    *ngIf="canEditColumn('language_id')"
+    [model]="data.entity"
+    field="language_id"
+    key="language_id"
+    value="name"
+    [placeholder]="('Choose a ' | translate) + ('language_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('language_id')"
+    [getItems]="service.sakila_language.read({limit:-1})">
+  </app-magic-selector>
+
+  <app-magic-selector
+    *ngIf="canEditColumn('original_language_id')"
+    [model]="data.entity"
+    field="original_language_id"
+    key="language_id"
+    value="name"
+    [placeholder]="('Choose a ' | translate) + ('original_language_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('original_language_id')"
+    [getItems]="service.sakila_language.read({limit:-1})">
+  </app-magic-selector>
+
+  <mat-form-field
+    *ngIf="canEditColumn('title')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'title' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('title')"
+      [(ngModel)]="data.entity.title"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('description')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'description' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('description')"
+      [(ngModel)]="data.entity.description"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('release_year')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'release_year' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('release_year')"
+      [(ngModel)]="data.entity.release_year"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('rating')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'rating' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('rating')"
+      [(ngModel)]="data.entity.rating"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('special_features')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'special_features' | translate}}</mat-label>
+    <input
+      matInput
+      type="text"
+      (change)="changed('special_features')"
+      [(ngModel)]="data.entity.special_features"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('film_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'film_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('film_id')"
+      [(ngModel)]="data.entity.film_id"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('rental_duration')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'rental_duration' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('rental_duration')"
+      [(ngModel)]="data.entity.rental_duration"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('rental_rate')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'rental_rate' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="any"
+      (change)="changed('rental_rate')"
+      [(ngModel)]="data.entity.rental_rate"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('length')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'length' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('length')"
+      [(ngModel)]="data.entity.length"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field
+    *ngIf="canEditColumn('replacement_cost')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'replacement_cost' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="any"
+      (change)="changed('replacement_cost')"
+      [(ngModel)]="data.entity.replacement_cost"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

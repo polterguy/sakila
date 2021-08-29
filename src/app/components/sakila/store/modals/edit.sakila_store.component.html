@@ -1,0 +1,49 @@
+
+<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Store' | translate}}</h1>
+<div mat-dialog-content>
+
+  <app-magic-autocomplete
+    *ngIf="canEditColumn('address_id')"
+    [model]="data.entity"
+    field="address_id"
+    key="address_id"
+    table="address"
+    value="address"
+    [placeholder]="('Choose a ' | translate) + ('address_id' | translate)"
+    class="entity-edit-field"
+    (change)="changed('address_id')"
+    [getItems]="service.sakila_address">
+  </app-magic-autocomplete>
+
+  <mat-form-field
+    *ngIf="canEditColumn('store_id')"
+    class="entity-edit-field"
+    appearance="outline">
+    <mat-label>{{'store_id' | translate}}</mat-label>
+    <input
+      matInput
+      type="number"
+      step="1"
+      (change)="changed('store_id')"
+      [(ngModel)]="data.entity.store_id"
+      autocomplete="off">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+
+  <div class="right-aligned">
+
+    <button 
+      mat-raised-button
+      color="primary"
+      (click)="upsert()">{{'Save' | translate}}</button>
+
+    <button
+      mat-button
+      (click)="close(null)">{{'Cancel' | translate}}</button>
+
+  </div>
+
+</div>

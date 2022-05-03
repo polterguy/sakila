@@ -41,7 +41,7 @@ export class HttpService {
       debug: (content: string) => {
         this.httpClient.post<StatusResponse>(
           environment.apiUrl +
-          'magic/modules/system/logging/log', {
+          'magic/system/logging/log', {
             type: 'debug',
             content
         }).subscribe((res: StatusResponse) => {
@@ -54,7 +54,7 @@ export class HttpService {
       info: (content: string) => {
         this.httpClient.post<StatusResponse>(
           environment.apiUrl +
-          'magic/modules/system/logging/log', {
+          'magic/system/logging/log', {
             type: 'info',
             content
         }).subscribe((res: StatusResponse) => {
@@ -67,7 +67,7 @@ export class HttpService {
       error: (content: string) => {
         this.httpClient.post<StatusResponse>(
           environment.apiUrl +
-          'magic/modules/system/logging/log', {
+          'magic/system/logging/log', {
             type: 'error',
             content
         }).subscribe((res: StatusResponse) => {
@@ -80,7 +80,7 @@ export class HttpService {
       fatal: (content: string) => {
         this.httpClient.post<StatusResponse>(
           environment.apiUrl +
-          'magic/modules/system/logging/log', {
+          'magic/system/logging/log', {
             type: 'fatal',
             content
         }).subscribe((res: StatusResponse) => {

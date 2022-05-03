@@ -1,6 +1,6 @@
 {
-  "apiUrl": "https://api.servergardens.com/",
-  "apiDomain": "api.servergardens.com",
+  "apiUrl": "https://api.aista.com/",
+  "apiDomain": "api.aista.com",
   "version": "1.0.0",
   "default_language": "en-US"
 }

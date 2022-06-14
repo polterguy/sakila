@@ -1,0 +1,21 @@
+
+# Builds and deploys Docker image to Docker hub when a new tag/release is created
+
+name: Builds and publishes new Docker images to Docker hub when a new tag is created
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get tag version number
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Build and push Docker CI images
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        docker build -t aistamagic/sakila:${{ steps.get_version.outputs.VERSION }} -f ./Dockerfile .
+        docker push aistamagic/sakila:${{ steps.get_version.outputs.VERSION }}

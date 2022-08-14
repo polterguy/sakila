@@ -30,12 +30,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('country')"
+            (click)="sort('country.country')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('country')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('country.country')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['country']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['country']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="last_update">
@@ -51,12 +51,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('last_update')"
+            (click)="sort('country.last_update')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('last_update')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('country.last_update')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
+        <td mat-cell *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
       </ng-container>
 
       <ng-container matColumnDef="country_id">
@@ -72,12 +72,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('country_id')"
+            (click)="sort('country.country_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('country_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('country.country_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['country_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['country_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="delete-instance">
@@ -92,7 +92,7 @@
           [ngClass]="authService.me.canInvoke(url(), 'delete') && httpService['sakila_country']['delete'] ? 'delete-column' : 'hidden'">
           <button
             mat-button
-            (click)="deleteEntity(el, {country_id: el.country_id})"
+            (click)="deleteEntity($event, el, {country_id: el.country_id})"
             [matTooltip]="'Delete this record' | translate">
             <mat-icon matSuffix>delete</mat-icon>
           </button>
@@ -106,7 +106,7 @@
           colspan="3">
           <div
             class="details-sheet"
-            *ngIf="shouldDisplayDetails(el)">
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
             <button
               *ngIf="authService.me.canInvoke(url(), 'put') && httpService['sakila_country']['update']"
               mat-button
@@ -134,15 +134,18 @@
 
       <tr
         mat-row
-        [ngClass]="getClassForRecord(row)"
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
         *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr
         mat-row
-        [ngClass]="getClassForDetails(row)"
+        class="expanded-row"
         *matRowDef="let row; columns: ['details']; "></tr>
 
     </table>
+
     <mat-paginator
       #paginator
       [(length)]="itemsCount"

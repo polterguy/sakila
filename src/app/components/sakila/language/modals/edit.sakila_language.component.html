@@ -1,49 +1,70 @@
+<form>
+  <h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Language' | translate}}</h1>
+  <div mat-dialog-content>
 
-<h1 mat-dialog-title>{{(data.isEdit ? 'Edit' : 'Create') | translate}} {{'Language' | translate}}</h1>
-<div mat-dialog-content>
+      <mat-form-field
+      *ngIf="canEditColumn('name')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'name' | translate}}</mat-label>
+      <input
+        matInput
+        type="text"
+        name="name"
+        (change)="changed('name')"
+        [(ngModel)]="data.entity.name"
+        autocomplete="off">
+    </mat-form-field>
 
-  <mat-form-field
-    *ngIf="canEditColumn('name')"
-    class="entity-edit-field"
-    appearance="outline">
-    <mat-label>{{'name' | translate}}</mat-label>
-    <input
-      matInput
-      type="text"
-      (change)="changed('name')"
-      [(ngModel)]="data.entity.name"
-      autocomplete="off">
-  </mat-form-field>
+    <mat-form-field
+      *ngIf="canEditColumn('language_id')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'language_id' | translate}}</mat-label>
+      <input
+        matInput
+        type="number"
+        step="1"
+        name="language_id"
+        (change)="changed('language_id')"
+        [(ngModel)]="data.entity.language_id"
+        autocomplete="off">
+    </mat-form-field>
 
-  <mat-form-field
-    *ngIf="canEditColumn('language_id')"
-    class="entity-edit-field"
-    appearance="outline">
-    <mat-label>{{'language_id' | translate}}</mat-label>
-    <input
-      matInput
-      type="number"
-      step="1"
-      (change)="changed('language_id')"
-      [(ngModel)]="data.entity.language_id"
-      autocomplete="off">
-  </mat-form-field>
+    <mat-form-field
+      *ngIf="canEditColumn('last_update')"
+      class="entity-edit-field"
+      appearance="outline">
+      <mat-label>{{'last_update' | translate}}</mat-label>
+      <input
+        matInput
+        name="last_update"
+        (change)="changed('last_update')"
+        [owlDateTime]="pickerlast_update"
+        [owlDateTimeTrigger]="pickerlast_update"
+        [(ngModel)]="data.entity.last_update"
+        autocomplete="off">
+      <owl-date-time #pickerlast_update (afterPickerClosed)="changed('last_update')"></owl-date-time>
+      <mat-icon matSuffix matDatepickerToggleIcon>calendar_today</mat-icon>
+    </mat-form-field>
 
 </div>
 
-<div mat-dialog-actions>
+  <div mat-dialog-actions>
 
-  <div class="right-aligned">
+    <div class="right-aligned">
 
-    <button 
-      mat-raised-button
-      color="primary"
-      (click)="upsert()">{{'Save' | translate}}</button>
+      <button 
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="upsert()">{{'Save' | translate}}</button>
 
-    <button
-      mat-button
-      (click)="close(null)">{{'Cancel' | translate}}</button>
+      <button
+        mat-button
+        (click)="close(null)">{{'Cancel' | translate}}</button>
+
+    </div>
 
   </div>
-
-</div>
+</form>

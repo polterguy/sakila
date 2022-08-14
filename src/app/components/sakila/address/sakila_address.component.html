@@ -35,7 +35,7 @@
             <mat-icon matSuffix>{{getSortIcon('city_id.city')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['city_id.city']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['city_id.city']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="address">
@@ -51,12 +51,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('address')"
+            (click)="sort('address.address')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('address')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.address')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['address']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['address']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="address2">
@@ -72,12 +72,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('address2')"
+            (click)="sort('address.address2')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('address2')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.address2')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['address2']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['address2']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="district">
@@ -93,12 +93,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('district')"
+            (click)="sort('address.district')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('district')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.district')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['district']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['district']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="postal_code">
@@ -114,12 +114,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('postal_code')"
+            (click)="sort('address.postal_code')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('postal_code')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.postal_code')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['postal_code']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['postal_code']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="phone">
@@ -135,12 +135,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('phone')"
+            (click)="sort('address.phone')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('phone')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.phone')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['phone']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['phone']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="last_update">
@@ -156,12 +156,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('last_update')"
+            (click)="sort('address.last_update')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('last_update')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.last_update')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
+        <td mat-cell *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
       </ng-container>
 
       <ng-container matColumnDef="address_id">
@@ -177,12 +177,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('address_id')"
+            (click)="sort('address.address_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('address_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.address_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['address_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['address_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="city_id">
@@ -198,12 +198,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('city_id')"
+            (click)="sort('address.city_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('city_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('address.city_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['city_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['city_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="delete-instance">
@@ -218,7 +218,7 @@
           [ngClass]="authService.me.canInvoke(url(), 'delete') && httpService['sakila_address']['delete'] ? 'delete-column' : 'hidden'">
           <button
             mat-button
-            (click)="deleteEntity(el, {address_id: el.address_id})"
+            (click)="deleteEntity($event, el, {address_id: el.address_id})"
             [matTooltip]="'Delete this record' | translate">
             <mat-icon matSuffix>delete</mat-icon>
           </button>
@@ -232,7 +232,7 @@
           colspan="8">
           <div
             class="details-sheet"
-            *ngIf="shouldDisplayDetails(el)">
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
             <button
               *ngIf="authService.me.canInvoke(url(), 'put') && httpService['sakila_address']['update']"
               mat-button
@@ -280,15 +280,18 @@
 
       <tr
         mat-row
-        [ngClass]="getClassForRecord(row)"
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
         *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr
         mat-row
-        [ngClass]="getClassForDetails(row)"
+        class="expanded-row"
         *matRowDef="let row; columns: ['details']; "></tr>
 
     </table>
+
     <mat-paginator
       #paginator
       [(length)]="itemsCount"

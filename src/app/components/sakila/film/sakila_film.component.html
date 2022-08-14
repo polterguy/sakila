@@ -35,7 +35,7 @@
             <mat-icon matSuffix>{{getSortIcon('language_id.name')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['language_id.name']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['language_id.name']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="original_language_id.name">
@@ -56,7 +56,7 @@
             <mat-icon matSuffix>{{getSortIcon('original_language_id.name')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['original_language_id.name']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['original_language_id.name']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="title">
@@ -72,12 +72,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('title')"
+            (click)="sort('film.title')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('title')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.title')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['title']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['title']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="description">
@@ -93,12 +93,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('description')"
+            (click)="sort('film.description')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('description')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.description')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['description']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['description']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="release_year">
@@ -114,12 +114,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('release_year')"
+            (click)="sort('film.release_year')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('release_year')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.release_year')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['release_year']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['release_year']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="rating">
@@ -135,12 +135,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('rating')"
+            (click)="sort('film.rating')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('rating')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.rating')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['rating']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['rating']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="special_features">
@@ -156,12 +156,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('special_features')"
+            (click)="sort('film.special_features')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('special_features')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.special_features')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['special_features']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['special_features']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="last_update">
@@ -177,12 +177,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('last_update')"
+            (click)="sort('film.last_update')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('last_update')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.last_update')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
+        <td mat-cell *matCellDef="let el">{{el['last_update'] | formatDate}}</td>
       </ng-container>
 
       <ng-container matColumnDef="film_id">
@@ -198,12 +198,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('film_id')"
+            (click)="sort('film.film_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('film_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.film_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['film_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['film_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="language_id">
@@ -219,12 +219,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('language_id')"
+            (click)="sort('film.language_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('language_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.language_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['language_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['language_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="original_language_id">
@@ -240,12 +240,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('original_language_id')"
+            (click)="sort('film.original_language_id')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('original_language_id')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.original_language_id')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['original_language_id']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['original_language_id']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="rental_duration">
@@ -261,12 +261,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('rental_duration')"
+            (click)="sort('film.rental_duration')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('rental_duration')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.rental_duration')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['rental_duration']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['rental_duration']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="rental_rate">
@@ -282,12 +282,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('rental_rate')"
+            (click)="sort('film.rental_rate')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('rental_rate')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.rental_rate')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['rental_rate']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['rental_rate']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="length">
@@ -303,12 +303,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('length')"
+            (click)="sort('film.length')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('length')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.length')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['length']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['length']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="replacement_cost">
@@ -324,12 +324,12 @@
           </mat-form-field>
           <button
             class="sort-button"
-            (click)="sort('replacement_cost')"
+            (click)="sort('film.replacement_cost')"
             mat-button>
-            <mat-icon matSuffix>{{getSortIcon('replacement_cost')}}</mat-icon>
+            <mat-icon matSuffix>{{getSortIcon('film.replacement_cost')}}</mat-icon>
           </button>
         </th>
-        <td mat-cell (click)="toggleDetails(el)" *matCellDef="let el">{{el['replacement_cost']}}</td>
+        <td mat-cell *matCellDef="let el">{{el['replacement_cost']}}</td>
       </ng-container>
 
       <ng-container matColumnDef="delete-instance">
@@ -344,7 +344,7 @@
           [ngClass]="authService.me.canInvoke(url(), 'delete') && httpService['sakila_film']['delete'] ? 'delete-column' : 'hidden'">
           <button
             mat-button
-            (click)="deleteEntity(el, {film_id: el.film_id})"
+            (click)="deleteEntity($event, el, {film_id: el.film_id})"
             [matTooltip]="'Delete this record' | translate">
             <mat-icon matSuffix>delete</mat-icon>
           </button>
@@ -358,7 +358,7 @@
           colspan="13">
           <div
             class="details-sheet"
-            *ngIf="shouldDisplayDetails(el)">
+            [@detailExpand]="el == expandedElement ? 'expanded' : 'collapsed'">
             <button
               *ngIf="authService.me.canInvoke(url(), 'put') && httpService['sakila_film']['update']"
               mat-button
@@ -426,15 +426,18 @@
 
       <tr
         mat-row
-        [ngClass]="getClassForRecord(row)"
+        [ngClass]="expandedElement === row ? 'selected' : 'row'"
+        class="expandable-row"
+        (click)="expandedElement = expandedElement === row ? null : row"
         *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr
         mat-row
-        [ngClass]="getClassForDetails(row)"
+        class="expanded-row"
         *matRowDef="let row; columns: ['details']; "></tr>
 
     </table>
+
     <mat-paginator
       #paginator
       [(length)]="itemsCount"
